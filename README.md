@@ -4,4 +4,4 @@
 
 TODO 
 
-![screen_examples](.img/screen_example.png)
+![screen_examples](./.img/screen_animation.gif)
