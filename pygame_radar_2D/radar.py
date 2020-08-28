@@ -29,7 +29,7 @@ class PointUI(ElementUI):
         self.point = point 
 
     def paint(self,screen):
-        pygame.draw.circle(screen, RED, self.point.to_pos(), 5)
+        pygame.draw.circle(screen, RED, self.point.to_pos(), 10)
 
 class ScannLineUI(ElementUI): 
 
