@@ -103,23 +103,26 @@ class Radar:
         self.fps = fps
         PointUI.SIZE = point_size
 
+        self._is_running = False
+
     def _start(self):
         pygame.init()
         screen = pygame.display.set_mode((self.side, self.side))
         clock = pygame.time.Clock()
         deg = 0
-        while True:
+        self._is_running = True
+        while self._is_running:
             for event in pygame.event.get():
                 if((event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE) 
                                 or (event.type == pygame.QUIT)):
-                        pygame.quit()
-                        return
-            deg += 1
-            deg = deg % 360
-
-            self.radar_ui.update_scannlines(self.side/2,deg)
-            self.radar_ui.paint(screen)
-            clock.tick(self.fps)
+                        self.quit()
+            
+            if(self._is_running):
+                deg += 1
+                deg = deg % 360
+                self.radar_ui.update_scannlines(self.side/2,deg)
+                self.radar_ui.paint(screen)
+                clock.tick(self.fps)
 
     def start(self): 
         import threading
@@ -128,3 +131,7 @@ class Radar:
 
     def set_points(self,points_polar): 
         self.radar_ui.update_points(points_polar)
+
+    def quit(self):
+        self._is_running = False
+        pygame.quit()
