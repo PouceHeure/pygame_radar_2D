@@ -23,13 +23,15 @@ class CircleUI(ElementUI):
     def paint(self,screen): 
         pygame.draw.circle(screen, GREEN, self.point_center.to_pos(), self.radius, 2)
 
-class PointUI(ElementUI): 
+class PointUI(ElementUI):
+
+    SIZE = 10
 
     def __init__(self,point):
         self.point = point 
 
     def paint(self,screen):
-        pygame.draw.circle(screen, RED, self.point.to_pos(), 10)
+        pygame.draw.circle(screen, RED, self.point.to_pos(), PointUI.SIZE)
 
 class ScannLineUI(ElementUI): 
 
@@ -48,17 +50,17 @@ class ScannLineUI(ElementUI):
 
 class RadarUI: 
 
-    def __init__(self,side,r_lim):
+    def __init__(self,side_size,r_lim):
         self.scannlines_ui = [] 
         self.points_UI = []
         self.circles_UI = []
 
-        self.side = side
-        self.r_lim = r_lim 
+        self.side = side_size
+        self.r_lim = r_lim
 
         frame_origin = Frame("origin",is_origin=True)
         frame_1 = Frame("frame_1")
-        v1_t = VectorTranslation(side/2,side/2)
+        v1_t = VectorTranslation(side_size/2,side_size/2)
         v1_o = VectorOrientation(-90)
         Transformation("frame_1","origin",v1_t,v1_o)
 
@@ -90,15 +92,16 @@ class RadarUI:
 
 class Radar: 
 
-    def __init__(self,side,r_lim=300,fps=30):
-        self.side = side 
+    def __init__(self,side_size,r_lim=300,fps=30,point_size=10):
+        self.side = side_size 
         circles_percent = [0.25,0.50,0.75,0.100]
         circles_radius = []
         for percent in circles_percent: 
-            circles_radius.append(int(side*percent))
-        self.radar_ui = RadarUI(side,r_lim)
+            circles_radius.append(int(side_size*percent))
+        self.radar_ui = RadarUI(side_size,r_lim)
         self.radar_ui.update_circles(circles_radius)
         self.fps = fps
+        PointUI.SIZE = point_size
 
     def _start(self):
         pygame.init()

@@ -2,7 +2,7 @@ from pygame_radar_2D.radar import Radar
 from pygame_radar_2D.point import PointPolar
 
 if __name__ == '__main__':
-    radar = Radar(300,r_lim=300)
+    radar = Radar(300,r_lim=300,point_size=5)
     radar.start()
    
     import random 
