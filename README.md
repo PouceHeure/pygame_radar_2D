@@ -1,5 +1,7 @@
 # PyGame radar 2D 
 
+
+
 ![tag:language:python3](https://raw.githubusercontent.com/PouceHeure/markdown_tags/v1.0/tags/language/python3/python3_blue.png)
 ![tag:lib:pygame](https://raw.githubusercontent.com/PouceHeure/markdown_tags/v1.0/tags/lib/pygame/pygame_blue.png)
 
@@ -33,4 +35,4 @@ Look the example **example-001-basic.py**
 
 Simple example showing the plot of 2 random data 
 
-![screen_examples](./.img/screen_animation.gif)
+![screen_examples](./.doc/screen_animation.gif)
